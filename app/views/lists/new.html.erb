@@ -1,0 +1,13 @@
+<h1>My movie list</h1>
+
+<%= form_with model: @list do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to lists", lists_path %>
+</div>
