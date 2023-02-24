@@ -5,7 +5,10 @@
 <div class="container">
   <ul>
     <% @lists.each do |list| %>
-      <li><%= list.name %></li>
+      <li>
+      <%= list.name %>
+      <%= link_to "details", list_path(list) %>
+      </li>
     <% end %>
   </ul>
 
