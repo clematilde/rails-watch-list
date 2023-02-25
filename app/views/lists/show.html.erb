@@ -1,3 +1,22 @@
 <h1>Show one list</h1>
 
 <p><%= @list.name %></p>
+
+<%= "You haven't saved any movies yet!" if @list.movies.empty? %>
+
+<% @list.movies.each do |movie| %>
+    <% @bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+    <ul>
+      <li>
+       <%= movie.title %>
+        <%= movie.rating %>
+        <%= movie.overview %>
+      </li>
+     </ul>
+     <%= @bookmark.comment %>
+     <%= link_to "delete", bookmark_path(@bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %>
+
+    <% end %>
+
+<p><%= link_to "Back", lists_path %></p>
+  <%= link_to "Add bookmark", new_list_bookmark_path(@list) %>
